@@ -1,0 +1,621 @@
+WEBVTT
+
+
+In today's exercise, we're going to be
+
+talking about something that is brand
+spanking new to CSS and that is CSS
+
+
+variables. And now, I know what you're
+saying, "Wes, we've had variables in SAS
+
+forever and this is not new." But it
+is new, smart Alec, because CSS
+
+ 
+variables can be updated with JavaScript,
+meaning that when you update a variable
+
+29.340 --> 34.143 
+in CSS, everywhere on the page that that
+variable is referenced will update itself.
+
+ 
+ So let's take a look here. I've
+got three variables, spacing, blur,
+ 
+and base color. And when I change one of
+those, like spacing, it will just
+
+49.580 --> 53.450 
+immediately update wherever that
+variable is changed on the page,
+
+53.450 --> 58.400 
+same with blur. I'm only using that on
+this imagery here. But as I change it,
+
+58.400 --> 59.310 
+it's going to update.
+
+59.310 --> 01:03.330 
+And then finally base color, I'm using it
+for the background of this image as well
+
+01:03.330 --> 01:07.630 
+as the color of this JS highlight here.
+So when I change that color,
+
+01:07.630 --> 01:12.350 
+it updates everywhere it's referenced on
+the actual page. So let's jump in.
+
+01:12.350 --> 01:17.870 
+Let's take a quick look at our HTML here.
+I've got h2 which has a span with a class
+
+01:17.870 --> 01:24.850 
+of highlight or hl around JS. And
+then I've got a label and input for the
+
+01:24.850 --> 01:31.360 
+spacing which has a min of 10, a max of
+200. And we've got a range which does our
+
+01:31.360 --> 01:36.290 
+blur. And we've got an input type of color
+which gives you that kind of cool color
+
+01:36.290 --> 01:39.120 
+picker. You're getting at bit of a
+different color picker off your own
+
+01:39.120 --> 01:44.040 
+windows or something like that but it'll
+always open up whatever that default color
+
+01:44.040 --> 01:48.210 
+picker is on your system. Then we've
+got the image and we're styling.
+
+01:48.210 --> 01:51.420 
+Now, let's actually jump into...opening
+this up in our browser.
+
+01:51.420 --> 01:55.150 
+Let's jump into some CSS variables first
+because we need to understand how they
+
+01:55.150 --> 01:59.100 
+work before we can write any of our
+JavaScript to update them.
+
+01:59.100 --> 02:03.830 
+So the way that CSS variables work is that
+you declare them on some sort of element
+
+02:03.830 --> 02:07.910 
+in our case, we're going to declare it on
+root which is sort of the highest level
+
+02:07.910 --> 02:11.570 
+that you can get, very similar to
+declaring it on the HTML element.
+
+02:11.570 --> 02:15.200 
+And here's where we're going to set our
+default values for those variables.
+
+02:15.200 --> 02:19.700 
+So we're going to have a base variable
+that's going to be set to the Wes base
+
+02:19.700 --> 02:24.000 
+yellow color. We're going to have a
+spacing variable which is going to be
+
+02:24.000 --> 02:29.410 
+defaulted to 10 pixels and we're going to
+give ourselves a blur variable which is
+
+02:29.410 --> 02:33.650 
+also going to be defaulted to 10 pixels.
+Now, we've defined these variables,
+
+02:33.650 --> 02:35.530 
+and we can go ahead
+and start using them.
+
+02:35.530 --> 02:40.210 
+So let's grab our image that's on the page
+here and give it a padding of...and now
+
+02:40.210 --> 02:45.910 
+when you want to use a variable in CSS,
+you say "var" and you pass it the spacing.
+
+02:45.910 --> 02:48.590 
+Now this dash-dash, I know you're like,
+"What the hell are you doing,
+
+02:48.590 --> 02:52.930 
+Wes?" That is the standard in CSS, that's
+how you do it. It's normally like dollar
+
+02:52.930 --> 02:57.050 
+in SAS or something like that. But in
+CSS, it's dash-dash. Don't yell at me,
+
+02:57.050 --> 03:01.310 
+that's how they decided to go about it so
+that it would be backwards compatible with
+
+03:01.310 --> 03:07.427 
+all the CSS that were older browsers spec.
+And look, the padding is based on the
+
+03:07.427 --> 03:12.720 
+spacing and it's giving us some...you can
+see the green there. Okay, that works.
+
+03:12.720 --> 03:19.140 
+Then we want to work on the background is
+going to be our variable base which is
+
+03:19.140 --> 03:23.510 
+going to be that yellow color. Okay,
+looking good. The image is taking a second
+
+03:23.510 --> 03:28.970 
+to load. Then if I were to change this
+spacing to 50 pixels, refresh,
+
+03:28.970 --> 03:34.360 
+you see it's much bigger. Put it back down
+to 10 it's going to take that variable
+
+03:34.360 --> 03:36.440 
+from spacing and I don't
+need to re-declare it.
+
+03:36.440 --> 03:41.780 
+And then finally, we are going to give it
+a filter which is a blur and we want to
+
+03:41.780 --> 03:49.195 
+use the variable "blur." Good. Now we want
+to work with this JS highlight here.
+
+03:49.195 --> 03:56.040 
+So we'll say anything with the class
+of highlight is going to have the color of
+
+03:56.040 --> 04:03.180 
+variable base. Great. So anywhere now
+we're referencing this color right here
+
+04:03.180 --> 04:07.390 
+and right here, it's going to be changed
+if I were just to change this to maybe
+
+04:07.390 --> 04:11.160 
+like red, everywhere on the page
+gets...you get the point, right?
+
+04:11.160 --> 04:13.450 
+It's a variable and you reference it
+and it's going to be used.
+
+04:13.450 --> 04:19.220 
+Now, how do we write some JavaScript to
+update those? Well, let's go ahead and do
+
+04:19.220 --> 04:23.160 
+that. First thing that we need to do is we
+need to select all three of these inputs
+
+04:23.160 --> 04:28.450 
+right here so that when they change, we
+can then update the CSS variables which
+
+04:28.450 --> 04:33.360 
+will in turn update the colors on the
+screen so we'll scroll down to our script
+
+04:33.360 --> 04:37.860 
+tags here and we will select all of our
+inputs on the page, so const inputs
+
+04:37.860 --> 04:45.308 
+equals, and I'm going to use
+document.querySelectorAll. And our
+
+04:45.308 --> 04:50.600 
+selector here is going to be .controls
+input, so that's going to select all the
+
+04:50.600 --> 04:51.730 
+inputs on the page.
+
+04:51.730 --> 04:57.130 
+Real quick aside, in the last video, I
+said that the querySelector will give you
+
+04:57.130 --> 05:00.140 
+an array. And what I really meant is it
+gives you something called a NodeList.
+
+05:00.140 --> 05:04.580 
+If I run this in my console here, it
+returns to you what actually looks like
+
+05:04.580 --> 05:08.380 
+an array. It's got square brackets. It has
+index items. It has a length.
+
+05:08.380 --> 05:12.890 
+But it's not an array. And the difference
+between a NodeList and an array is that an
+
+05:12.890 --> 05:20.070 
+array has all kinds of methods for dealing
+with an array like map and reduce and all
+
+05:20.070 --> 05:23.700 
+the good ones. And if you open up the
+prototype for the NodeList,
+
+05:23.700 --> 05:29.840 
+you see we only have a couple methods
+here, entries for each keys and values and
+
+05:29.840 --> 05:33.550 
+then a couple other little things here.
+Whereas if I had an array,
+
+05:33.550 --> 05:39.810 
+like one, two, three, R X equals, and
+I have X, and I open that up and look
+
+05:39.810 --> 05:43.100 
+at the prototype of that. Oh, look at all
+these good stuff. There's everything that
+
+05:43.100 --> 05:44.280 
+you're used to.
+
+05:44.280 --> 05:49.840 
+So sometimes you'll see people converting
+their NodeList to an array.
+
+05:49.840 --> 05:54.100 
+And in some future exercises, we're going
+to have to do that. But in our case,
+
+05:54.100 --> 05:58.920 
+what we're going to use to loop over these
+inputs is the forEach method which has
+
+05:58.920 --> 06:04.430 
+just recently been added to the NodeList,
+so it's not necessary for us to convert it
+
+06:04.430 --> 06:08.720 
+to an array unless you're using an older
+browser that does not support having
+
+06:08.720 --> 06:13.140 
+forEach on it. So what we want to do now
+is create our function called
+
+06:13.140 --> 06:20.930 
+handleUpdate, function handleUpdate and
+we'll just console.log this.value for each
+
+06:20.930 --> 06:26.650 
+of them. And then we'll listen for a
+change event on each of the inputs.
+
+06:26.650 --> 06:31.600 
+So we'll say inputs.forEach and then we
+want to loop over each one.
+
+06:31.600 --> 06:35.630 
+We have an input, I'm going to use an
+arrow function just to be nice and clean
+
+06:35.630 --> 06:41.930 
+here, the input.addEventListener.
+We want to listen for the change event.
+
+06:41.930 --> 06:45.386 
+And when that is called, we're
+going to call handleUpdate.
+
+06:47.607 --> 06:55.332 
+Good. Now when we open up our console here
+and I change one of these and I move and
+
+06:55.332 --> 07:03.130 
+let go 75, 102, 167, you see my blur will
+change as well. So I'm seeing the values
+
+07:03.130 --> 07:09.590 
+change whenever I change the value of
+one of these. But one little thing is you
+
+07:09.590 --> 07:12.580 
+notice that as I drag it around, it
+doesn't actually trigger a change.
+
+07:12.580 --> 07:21.890 
+What we can do is we can also listen for
+the mousemove update which when you move
+
+07:21.890 --> 07:26.160 
+over it looks like it's going to trigger
+every single time. There's some flags that
+
+07:26.160 --> 07:30.430 
+you could set where when click,
+set it to true, when you click off,
+
+07:30.430 --> 07:35.590 
+set it to false. We're going to keep it
+really simple here where when I move the
+
+07:35.590 --> 07:41.580 
+value, it's also going to trigger a
+change rather than just when I let go.
+
+07:41.580 --> 07:44.700 
+So we're listening for change and mouse
+move and it's going to call handleUpdate
+
+07:44.700 --> 07:46.900 
+regardless of which one that happened.
+
+07:46.900 --> 07:51.760 
+Now let's go into this handleUpdate here
+and let's work on getting the values out
+
+07:51.760 --> 07:57.240 
+of it. So the first thing we need to know
+is what is the suffix of the value that
+
+07:57.240 --> 08:02.840 
+we're working on. Because if we go up to
+our variables here, this base doesn't have
+
+08:02.840 --> 08:06.270 
+a suffix, it's just a hex code or RGB
+value that's going to come out of the
+
+08:06.270 --> 08:10.890 
+input. But the spacing and the blur,
+they're going to give us values like 10
+
+08:10.890 --> 08:16.680 
+but they need to be 10px. So what I've
+done is I've attached some additional info
+
+08:16.680 --> 08:22.190 
+to each of this inputs right here
+where I've created a data attribute.
+
+08:22.190 --> 08:25.820 
+Again, a data attribute is just an
+attribute that you've made up.you just
+
+08:25.820 --> 08:30.780 
+have to prefix it with data-dash
+something. And I've put on a sizing or a
+
+08:30.780 --> 08:36.920 
+suffix value here called px. And then this
+one, I haven't. So what we can do in here
+
+08:36.920 --> 08:43.000 
+is we can say const suffix
+equals this.dataset because...
+
+08:43.000 --> 08:45.750 
+What is this.dataset? Let's take a quick
+look at that a second.
+
+08:45.750 --> 08:54.740 
+Console.log this.dataset and if I change
+it...you see, dataset is an object that
+
+08:54.740 --> 08:58.950 
+will contain all the data attributes
+from that specific element.
+
+08:58.950 --> 09:03.880 
+In this case, it's just sizing. But if I
+were to go up to this first one here,
+
+09:03.880 --> 09:12.820 
+data-name equals wes and data-dash cool
+equals, we'll put a poop in there.
+
+09:12.820 --> 09:17.100 
+Now, let's see what we got. We got
+a poop, sure do have a poop.
+
+09:17.100 --> 09:20.020 
+Here we go. Open it up, we've
+got an object of all of the things.
+
+09:20.020 --> 09:23.340 
+So dataset is just an object that all
+ready. You don't have to select it.
+
+09:23.340 --> 09:26.990 
+You don't have to use any attribute
+selectors from it. It will just take
+
+09:26.990 --> 09:31.320 
+everything that has data-dash on that
+element and put it into a nice tidy little
+
+09:31.320 --> 09:32.420 
+object for you.
+
+09:32.420 --> 09:37.200 
+So we want to go back down to this. We'll
+say suffix equals this.dataset.
+
+09:37.200 --> 09:45.660 
+and what do we call it, sizing. Good.
+And then for some of them,
+
+09:45.660 --> 09:50.900 
+they don't have a sizing like the color
+one, so I'm just going to say "or nothing"
+
+09:50.900 --> 09:55.110 
+because if I don't leave it at that, we're
+gonna upend undefined in the end and
+
+09:55.110 --> 09:58.360 
+that's not what we want. So it's "or
+nothing," it's just going to fall back.
+
+09:58.360 --> 10:04.360 
+So let's console.log suffix, see
+what we're working with here.
+
+10:04.360 --> 10:10.300 
+So pixels, good. Pixels for that one. And
+then when I hover over this one,
+
+10:10.300 --> 10:15.010 
+you see nothing and that's because
+there is no suffix for the hex code.
+
+10:15.010 --> 10:20.322 
+Now, what we need to do is update the
+actual variable. So how do you select a
+
+10:20.322 --> 10:27.440 
+variable? And then the way that that works
+is we are going to select our entire
+
+10:27.440 --> 10:35.130 
+document which is our root here and
+we're going to set a property of base,
+
+10:35.130 --> 10:41.330 
+spacing, or blur and you'll notice that we
+use the name here, name spacing,
+
+10:41.330 --> 10:51.970 
+name blur, and name base. So we go down
+here and let's console.log this.name.
+
+10:51.970 --> 11:03.154 
+Blur, spacing, base, good. We say
+document.documentElement.style.setProperty
+
+11:04.897 --> 11:12.187 
+and we're going to set the property of
+usually --base or --spacing but those
+
+11:12.187 --> 11:15.723 
+things are going to be variable so
+because we're using back text here,
+
+11:15.723 --> 11:23.181 
+we can plop that variable name in this
+.name and then it's going to be set
+
+11:23.181 --> 11:26.620 
+to this, .value. Now, that's not
+going to get us all the way there,
+
+11:26.620 --> 11:28.470 
+and I'll show you just a sec here.
+
+11:28.470 --> 11:33.510 
+Let's open up our elements panel and let's
+change our blur. You see what's happening
+
+11:33.510 --> 11:39.240 
+here? The blur value is changing but there
+is no pixels being upended to the end.
+
+11:39.240 --> 11:43.810 
+And that's why we created this suffix
+variable, so we can tack on the suffix
+
+11:43.810 --> 11:48.380 
+variable onto the end. And now when I
+refresh, let's switch out the image here
+
+11:48.380 --> 11:52.330 
+because the other one's having trouble
+loading. And I change one of these,
+
+11:52.330 --> 11:58.960 
+you'll see that the value is being updated
+124px, blur 10px. As you change it
+
+11:58.960 --> 12:02.320 
+it's going to be immediately updated.
+Let's double check that the color one
+
+12:02.320 --> 12:09.180 
+works as well. Perfect. So that's today's
+exercise. Again, when you use a CSS
+
+12:09.180 --> 12:14.910 
+variable, you can then update that
+variable on any element and any selectors
+
+12:14.910 --> 12:19.880 
+that are inside of that element that
+reference that variable will be using it.
+
+12:19.880 --> 12:23.650 
+So one other thing you could do is you
+could also scope them to be just on a
+
+12:23.650 --> 12:29.420 
+specific div. So if I were to take
+this h2 and add an attribute of
+
+12:29.420 --> 12:36.718 
+style equals and I want to change the
+variable base to be a badass,
+
+12:38.989 --> 12:40.359 
+oh, look what happened there.
+
+12:40.359 --> 12:46.710 
+So even though this base variable is right
+here, because I've specified the variable
+
+12:46.710 --> 12:51.720 
+lower down and inside of that, this
+highlight is referencing the variable,
+
+12:51.720 --> 12:57.230 
+this one wins out over this one. Much like
+the CSS cascade, the closer one will
+
+12:57.230 --> 13:00.140 
+always win out. And I can go ahead
+and keep changing this value,
+
+13:00.140 --> 13:06.810 
+and this one's not going to change because
+I've updated it at a lower scope.
+
+13:06.810 --> 13:09.268 
+Hopefully you enjoyed that.
+See you in the next one.
+
+13:09.268 --> 13:12.174 
+♪ [music] ♪
