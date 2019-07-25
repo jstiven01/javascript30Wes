@@ -1,22 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Type Ahead 👀</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Type Ahead 👀</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form class="search-form">
+      <input type="text" class="search" placeholder="City or State" />
+      <ul class="suggestions">
+        <li>Filter for a city</li>
+        <li>or a state</li>
+      </ul>
+    </form>
+    <script>
+      //endpoint to retrieve data cities
+      const endpoint =
+        "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
+      //array to store cities
+      const cities = [];
+      // fetch method to make promise in order to get data
+      fetch(endpoint)
+        .then(blob => blob.json())
+        .then(data => cities.push(...data));
 
-  <form class="search-form">
-    <input type="text" class="search" placeholder="City or State">
-    <ul class="suggestions">
-      <li>Filter for a city</li>
-      <li>or a state</li>
-    </ul>
-  </form>
-<script>
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+      // function findMatches will find the city/state that is searched
+      //console.log(cities.map(place => place.city));
+      console.log(cities);
+      for (let object1 of cities) {
+        console.log("hola");
+      }
 
-</script>
-</body>
+      function findMatches(wordToMatch, cities) {
+        return cities.filter(place => {
+          const regex = new RegExp(wordToMatch, "gi");
+          return place.city.match(regex) || place.state.match(regex);
+        });
+      }
+
+      // Function to format number with commas
+      function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+
+      function displayMatches() {
+        console.log(this.value);
+        const results = findMatches(this.value, cities);
+
+        const html = results
+          .map(place => {
+            // Highlight city name
+            const regexp = new RegExp(this.value, "gi");
+            const cityName = place.city.replace(
+              regexp,
+              `<span class="hl">${this.value}</span>`
+            );
+            // Highlight state name
+            const stateName = place.state.replace(
+              regexp,
+              `<span class="hl">${this.value}</span>`
+            );
+
+            const formatPopulation = numberWithCommas(place.population);
+            return `
+          <li>
+          <span class="name">${cityName}, ${stateName}</span>
+          <span class="population">${formatPopulation}</span>
+          </li>
+          `;
+          })
+          .join(""); //map returns an array, so to convert to a html String we use .join
+        suggestions.innerHTML = html;
+      }
+
+      const input = document.querySelector("input");
+      const suggestions = document.querySelector(".suggestions");
+      input.addEventListener("change", displayMatches);
+      input.addEventListener("keyup", displayMatches);
+    </script>
+  </body>
 </html>
