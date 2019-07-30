@@ -1,46 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Console Tricks!</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Console Tricks!</title>
+  </head>
+  <body>
+    <p onClick="makeGreen()">×BREAK×DOWN×</p>
 
-  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+    <script>
+      const dogs = [{ name: "Snickers", age: 2 }, { name: "hugo", age: 8 }];
 
-  <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+      function makeGreen() {
+        const p = document.querySelector("p");
+        p.style.color = "#BADA55";
+        p.style.fontSize = "50px";
+      }
 
-    function makeGreen() {
-      const p = document.querySelector('p');
-      p.style.color = '#BADA55';
-      p.style.fontSize = '50px';
-    }
+      // Regular
+      console.log("Test");
 
-    // Regular
+      // Interpolated
+      // with %s string
+      console.log("this is a %s test", "interpolation");
+      // with template string
+      let word = "interpolation template";
+      console.log(`${word}`);
 
-    // Interpolated
+      // Styled
+      console.log("%c this is a style text", "color:red; font-size: 32px;");
 
-    // Styled
+      // warning!
+      console.warn("This is a warning");
 
-    // warning!
+      // Error :|
+      console.error("This is a error");
 
-    // Error :|
+      // Info
+      console.info("this is a info");
 
-    // Info
+      // Testing
+      // throw an error when the assert is false
+      console.assert(1 === 4);
 
-    // Testing
+      // clearing
+      console.clear();
 
-    // clearing
+      // Viewing DOM Elements
+      console.log(document.querySelector("p"));
+      console.dir(document.querySelector("p"));
 
-    // Viewing DOM Elements
+      // Grouping together
+      dogs.forEach(dog => {
+        // Using group
+        //console.group(`${dog.name}`);
+        // Using collapsed group
+        console.groupCollapsed(`${dog.name}`);
+        console.log(`age of dog is (normal scale): ${dog.age}`);
+        console.log(`age of dog is (dog scale): ${dog.age * 7}`);
+        console.groupEnd(`${dog.name}`);
+      });
 
-    // Grouping together
+      // counting
+      console.count("dog");
 
-    // counting
-
-    // timing
-
-  </script>
-</body>
+      // timing
+      // test performance.now()
+    </script>
+  </body>
 </html>
